@@ -1,0 +1,26 @@
+.navbar {
+    background-color: #333; // Example background color
+    padding: 10px;
+    width: 100%;
+   &__list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+   &__item {
+      margin-right: 10px;
+   &:last-child {
+        margin-right: 0;
+      }
+    }
+   &__link {
+      text-decoration: none;
+      color: #fff; // Example text color
+      padding: 8px 12px;
+      display: inline-block;
+   &:hover {
+        background-color: #555; // Example hover background color
+      }
+    }
+   }

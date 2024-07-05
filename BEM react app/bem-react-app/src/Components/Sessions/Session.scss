@@ -1,0 +1,215 @@
+// mixins
+@mixin display-flex {
+	display: flex;
+  }
+  
+  // transition
+  @mixin transition($prop, $duration, $timing) {
+	-webkit-transition: $prop $duration $timing;
+	   -moz-transition: $prop $duration $timing;
+		 -o-transition: $prop $duration $timing;
+			transition: $prop $duration $timing;
+  }
+  
+  // transform
+  @mixin transform($transforms) {
+	-webkit-transform: $transforms;
+	   -moz-transform: $transforms;
+		-ms-transform: $transforms;
+		 -o-transform: $transforms;
+			transform: $transforms;
+  }
+  
+  // rotate
+  @mixin rotate($deg) {
+	@include transform(rotate(#{$deg}deg));
+  }
+  
+  // generic button 
+  @mixin generic-button {
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	background-color: #ffffff;
+	color: #666666;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bolder;
+	padding: 8px 12px;
+  }
+  
+  
+  // ----------------------------------
+  // variables
+  $primary-color: #fac239;
+  $green: green;
+  $blue: blue;
+  $purple: purple;
+  $brown: brown;
+  $default-border-bottom-style: 1px solid #000000;
+  $light-border-bottom-style: 1px solid #cccccc;
+  $default-dashed-border-bottom-style: 1px dashed #999999;
+  $active-dashed-border-bottom-style: 1px dashed $primary-color;
+  $hover-color: #63aec1;
+  // ----------------------------------
+
+
+
+  // generic style
+  
+  .session {
+	border: $light-border-bottom-style;
+	background-color: #fafafa;
+	// margin: 0 auto;
+	overflow: hidden;
+	padding: 10px 30px;
+	width: 100%;
+  }
+  
+  .session__time-sec {
+	position: relative;
+	
+	.session__time-period {
+	  border-bottom: $light-border-bottom-style;
+	  cursor: pointer;
+	  margin-bottom: 14px;
+	  padding-bottom: 12px;
+  
+	  @include display-flex;
+	  
+	  * {
+		margin: 0 5px;
+	  }
+	  
+	  .session__time {
+		border-bottom: $default-dashed-border-bottom-style;
+	  }
+	  
+	  .session__time--from1 {
+		color: $green;
+	  }
+      .session__time--from2 {
+		color: $blue;
+	  }
+      .session__time--from3 {
+		color: $brown;
+	  }
+      .session__time--from4 {
+		color: $purple;
+	  }
+
+	}
+  }
+  
+  .sessioon__sec-trigger {
+	left: -9999px;
+	position: absolute;
+  }
+  
+  .sessioon__sec-trigger:checked ~ .session__hidden {
+	border-bottom: 1px solid #999999;
+	margin-bottom: 12px;
+	max-height: 200px;
+	padding-bottom: 22px;
+  
+	@include transition(all, .5s, ease);
+  }
+  
+  .sessioon__sec-trigger:checked ~ .session__time-period .session__time-arrow {
+	@include rotate (90);
+	@include transition(transform, .5s, ease-out);
+  }
+  
+  .session__time-arrow {
+	@include transition(transform, .3s, ease-out);
+  }
+  
+  .session__hidden {
+	border-bottom: 1px solid #fafafa;
+	max-height: 0;
+	overflow: hidden;
+  
+	@include transition(all, .5s, ease);
+  }
+  
+  .session__ticket-table {
+	margin-bottom: 10px;
+	text-align: left;
+	width: 100%;
+	
+	.session__ticket-table-td {
+	  padding: 4px 0px
+	}
+  }
+  
+  .session__add-ticket-btn {
+	@include generic-button;
+  }
+  
+  .session__ticket-delete {
+	color: #dddddf;
+	cursor: pointer;
+	padding-left: 20px;
+	padding-right: 0;
+  }
+  
+  .session__add-session {
+	cursor: pointer;
+	display: inline-block;
+  }
+  
+  .session__add-icon {
+	padding-right: 4px;
+  }
+  
+  .session__location-td:hover {
+	color: $hover-color;
+  }
+  
+  .session__location {
+	border: 1px solid #fafafa;
+	cursor: pointer;
+	margin-right: 6px;
+	position: relative;
+	
+	&:hover {
+	  color: $hover-color;
+	  
+	  &::before {
+		background-color: $hover-color;
+	  }
+	  
+	  & ~ span {
+		color: $hover-color;
+	  }
+	}
+	
+	&::before {
+	  bottom: 3px;
+	  background-color: #666666;
+	  content: "";
+	  height: 1px;
+	  left: 0;
+	  position: absolute;
+	  width: 100%;
+	}
+  }
+  
+  .session__price-th,
+  .session__price-td {
+	text-align: right;
+  }
+  
+  .session__ticket-price {
+	border-bottom: $default-dashed-border-bottom-style;
+  }
+  
+  .session__qty-th,
+  .session__qty-td {
+	text-align: center;
+  }
+  
+  .session__ticket-qty {
+	border-bottom: $default-dashed-border-bottom-style;
+	padding: 0 8px;
+  }

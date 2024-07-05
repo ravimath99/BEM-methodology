@@ -1,0 +1,211 @@
+// Footer
+.footer {
+    background-color: #333;
+    padding: 20px;
+    width: 100%; /* Ensure footer spans full width */
+    bottom: 0;
+    // position: fixed;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+
+   &__form {
+      display: flex;
+      justify-content: center;
+    }
+   &__form-element {
+      width: 100%;
+      display: flex;
+    //   flex-wrap: wrap;
+      gap: 10px;
+    }
+   &__form-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+   &__label {
+      width: 100px; // Adjust width as needed
+      margin-right: 10px;
+      color: white;
+      font-weight: bold;
+    }
+   &__input,
+   &__textarea {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+   &__textarea {
+      resize: vertical;
+    }
+   &__button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+   &__button:hover {
+      background-color: #0056b3;
+    }
+   }
+
+   @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+   // Variables
+   $base-font-size: 16px;
+   
+   // Basic Styling
+   *,
+   *::before,
+   *::after {
+       box-sizing: border-box;
+   }
+   
+   // List of Social icons and colours
+   $icon-list: (
+       vimeo "Vimeo" "\f27d" #1ab7ea,
+       twitter "Twitter" "\f099" #1da1f2,
+       facebook "Facebook" "\f09a" #3b5998,
+       googleplus "Google+" "\f0d5" #dd4b39,
+       pintrest "Pintrest" "\f231" #bd081c,
+       linkedin "LinkedIn" "\f0e1" #0077b5,
+       dribble "Dribble" "\f17d" #ea4c89,
+       stumbleupon "StumbleUpon" "\f1a4" #eb4924,
+       lastfm "Last.fm" "\f202" #d51007,
+       instagram "Instagram" "\f16d" #5851db,
+       dropbox "Dropbox" "\f16b" #007ee5,
+       soundcloud "Soundcloud" "\f1be" #ff8800,
+       behance "Behance" "\f1b4" #1769ff,
+       skype "Skype" "\f17e" #00aff0,
+       github "GitHub" "\f113" #333,
+       flickr "Flickr" "\f16e" #0063dc,
+       rss "RSS" "\f09e" #f26522,
+   );
+   
+   // Display icons next to each other
+   .social__item {
+       display: inline-block;
+       margin-right: 0.05em;
+   }
+   
+   // Basic icon style
+   [class^="icon--"] {
+       font-family: 'FontAwesome';
+       speak: none;
+       font-style: normal;
+       font-weight: normal;
+       font-variant: normal;
+       text-transform: none;
+       line-height: 1;
+   
+       // Better Font Rendering
+       -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;	
+   }
+   
+   // Icon background
+   [class^="social__icon"] {
+       position: relative;
+       top: 0;
+       font-size: 1em;
+       width: 2em;
+       height: 2em;
+       color: white;
+       text-decoration: none;
+       border-radius: 100%;
+       text-align: center;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       box-shadow: 0 0 0.25em -0.25em rgba(0,0,0,0.2);
+       transition: background-color 150ms ease-in-out, top 250ms linear, box-shadow 250ms linear;
+       
+       &::before {
+           position: absolute;
+           background-color: #333;
+           font-size: 1rem;
+           display: block;
+           padding: 0.25em 0.5em;
+           top: -3.5em;
+           left: 50%;
+           transform: translateX(-50%);
+           opacity: 0;
+           transition: top 250ms linear, opacity 150ms linear 150ms;
+       }
+       
+       &::after {
+           font-size: 1rem;
+           content: '';
+           position: absolute;
+           top: -1.9em;
+           left: 50%;
+           transform: translateX(-50%);
+           width: 0;
+           height: 0;
+           border-style: solid;
+           border-width: 0.5em 0.5em 0 0.5em;
+           border-color: #333 transparent transparent transparent;
+           opacity: 0;
+           transition: top 250ms linear, opacity 150ms linear 150ms;
+       }
+       
+       &:hover,
+       &:focus,
+       &:active {
+           top: -0.25em;
+           box-shadow: 0 0.5em 0.25em -0.25em rgba(0,0,0,0.3);
+           outline: none;
+           
+           &::before {
+               opacity: 1;
+               top: -2.5em;
+           }
+           
+           &::after {
+               opacity: 1;
+               top: -0.9em;
+           }
+           
+       }
+       
+   }
+   
+   // Each loop for creating the icon CSS
+   @each $icon, $name, $unicode, $icon-background in $icon-list {
+   
+       .icon--#{$icon} {
+           &::before {
+               content: $unicode;
+           }
+       }
+   
+       .social__icon--#{$icon} {
+           background-color: $icon-background;
+   
+           &::before {
+               content: '#{$name}';
+           }
+           
+           &:hover,
+           &:focus,
+           &:active {
+               background-color: mix(black, $icon-background, 15%);
+           }
+   
+       }
+   
+   }
+   
+   // Changing the font-size of the container will update the size of the icons due to the use of em values
+   .social__container {
+       font-size: 1.2em;
+   }
